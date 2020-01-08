@@ -90,7 +90,9 @@ class BaseTheme extends Theme {
   buildButtons(buttons, icons) {
     Array.from(buttons).forEach(button => {
       const className = button.getAttribute('class') || '';
-      className.split(/\s+/).forEach(name => {
+      const classes = className.split(/\s+/);
+      if (classes.indexOf('ql-custom') !== -1) return;
+      classes.forEach(name => {
         if (!name.startsWith('ql-')) return;
         name = name.slice('ql-'.length);
         if (icons[name] == null) return;
